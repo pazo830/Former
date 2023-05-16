@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th=" http://www.thymleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Manager Users</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+</head>
+<body>
+<div class="container-fluid text-center">
+
+     <div ><h2>Manage Your Requests</h2>
+         <div class="  m-2">
+             <a class="h3 m-2" th:href="@{/users/new}">List Of Request Made</a>
+         </div>
+         <div th:if="${message}" class="alert alert-success text-center">
+             [[${message}]]
+         </div>
+     <table class="table table-bordered  ">
+         <thead class="thead-dark">
+         <tr>
+             <th>Id</th>
+             <th>FirstName</th>
+             <th>LastName</th>
+             <th>District</th>
+             <th>Province</th>
+             <th>FarmingType</th>
+             <th>FertilizerType</th>
+             <th>Actions</th>
+         </tr>
+         </thead>
+         <tbody>
+         <th:block th:each="user :${listUsers}">
+         <tr>
+             <td>[[${user.id} ]]</td>
+             <td>[[${user.firstname} ]]</td>
+             <td>[[${user.lastname} ]]</td>
+             <td>[[${user.district} ]]</td>
+             <td>[[${user.province} ]]</td>
+             <td>[[${user.farming_type} ]]</td>
+             <td>[[${user.fertilizer_type} ]]</td>
+
+             <td>
+                 <a class="h4 mr-3 btn btn-success" th:href="@{ '/users/edit/' +${user.id}}">Edit</a>
+                 <a class="h4 mr-3 btn btn-danger" th:href="@{ '/users/delete/' +${user.id}}">Delete</a>
+             </td>
+         </tr>
+         </th:block>
+         </tbody>
+     </table>
+
+
+
+     </div>
+</div>
+</body>
+</html>
